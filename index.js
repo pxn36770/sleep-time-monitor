@@ -29,6 +29,7 @@ $(document).ready(function () {
 
             // Create a formatted time String in HH:MM AMPM Format from input fields
             var timeStr = `${$('#hour').val()}:${$('#minute').val()} ${$('#ampm').val()}`;
+            //console.log(timeStr);
 
             // Get JS Date object from HH:MM AMPM time string
             var setTime = strTimeToDateObj(timeStr);
@@ -38,13 +39,13 @@ $(document).ready(function () {
             var result1 = new Date(setTime.getTime() - 270 * oneMinute);
 
             // Get result2 for result1 - 1.5 hours
-            var result2 = new Date(res1.getTime() - 90 * oneMinute);
+            var result2 = new Date(result1.getTime() - 90 * oneMinute);
 
             // Get result3 for result2 - 1.5 hours
-            var result3 = new Date(res2.getTime() - 90 * oneMinute);
+            var result3 = new Date(result2.getTime() - 90 * oneMinute);
 
             // Get result4 for result3 - 1.5 hours
-            var result4 = new Date(res3.getTime() - 90 * oneMinute);
+            var result4 = new Date(result3.getTime() - 90 * oneMinute);
 
 
             // Display the results in respective result fields
@@ -73,19 +74,19 @@ $(document).ready(function () {
         var result1 = new Date(sleepDate.getTime() + (90 * oneMinute) + 14);
 
         // Get result2 for result1 + 1.5 hours
-        var result2 = new Date(res1.getTime() + 90 * oneMinute);
+        var result2 = new Date(result1.getTime() + 90 * oneMinute);
 
         // Get result3 for result2 + 1.5 hours
-        var result3 = new Date(res2.getTime() + 90 * oneMinute);
+        var result3 = new Date(result2.getTime() + 90 * oneMinute);
 
         // Get result4 for result3 + 1.5 hours
-        var result4 = new Date(res3.getTime() + 90 * oneMinute);
+        var result4 = new Date(result3.getTime() + 90 * oneMinute);
 
         // Get result5 for result4 + 1.5 hours
-        var result5 = new Date(res4.getTime() + 90 * oneMinute);
+        var result5 = new Date(result4.getTime() + 90 * oneMinute);
 
         // Get result6 for result5 + 1.5 hours
-        var result6 = new Date(res5.getTime() + 90 * oneMinute);
+        var result6 = new Date(result5.getTime() + 90 * oneMinute);
 
         // Display the results in respective result fields
         $('#resultNow2').html(strTime(result2));
@@ -112,6 +113,7 @@ function strTimeToDateObj(timestr) {
     
     // Extract Date into MM/DD/YYYY string format.
     var strDate = new Date().toLocaleDateString();
+    comsole.log(strDate);
 
     // Append HH:MM AMPM Time to strDate and parse into new JS Date Object
     return new Date(`${strDate} ${timestr}`);
