@@ -3,6 +3,61 @@
 // Document ready event
 $(document).ready(function () {
 
+    // Navigation bar link events
+    $('#homeLink').click(function () {
+
+        // Reload the page which by default goes to home page
+        location.reload();
+    });
+
+    $('#calculatorWorksLink').click(function () {
+
+        // Hide Home Page
+        $('#start').hide();
+
+        // Create AJAX Request to retrieve the page.
+        $.ajax('howcalculatorworks.html', {
+            cache: false,
+            success: function (data) {
+                $('#start').html(data);
+
+                $('#start').fadeIn();
+            }
+        })
+    });
+
+    $('#benifitsOfGoodSleepPageLink').click(function () {
+
+        // Hide Home Page
+        $('#start').hide();
+
+        // Create AJAX Request to retrieve the page.
+        $.ajax('benifitsofgoodsleep.html', {
+            cache: false,
+            success: function (data) {
+                $('#start').html(data);
+
+                $('#start').fadeIn();
+            }
+        })
+    });
+
+    $('#aboutUsPageLink').click(function () {
+
+        // Hide Home Page
+        $('#start').hide();
+        
+        // Create AJAX Request to retrieve the page.
+        $.ajax('about.html', {
+            cache: false,
+            success: function (data) {
+                $('#start').html(data);
+
+                $('#start').fadeIn();
+            }
+        })
+    });
+
     // Extract milliseconds from 1 minute value
     const oneMinute = 60 * 1000;   // 60 seconds * 1000 milliseconds
 
@@ -38,13 +93,13 @@ $(document).ready(function () {
             var result1 = new Date(setTime.getTime() - 270 * oneMinute);
 
             // Get result2 for result1 - 1.5 hours
-            var result2 = new Date(res1.getTime() - 90 * oneMinute);
+            var result2 = new Date(result1.getTime() - 90 * oneMinute);
 
             // Get result3 for result2 - 1.5 hours
-            var result3 = new Date(res2.getTime() - 90 * oneMinute);
+            var result3 = new Date(result2.getTime() - 90 * oneMinute);
 
             // Get result4 for result3 - 1.5 hours
-            var result4 = new Date(res3.getTime() - 90 * oneMinute);
+            var result4 = new Date(result3.getTime() - 90 * oneMinute);
 
 
             // Display the results in respective result fields
@@ -73,19 +128,19 @@ $(document).ready(function () {
         var result1 = new Date(sleepDate.getTime() + (90 * oneMinute) + 14);
 
         // Get result2 for result1 + 1.5 hours
-        var result2 = new Date(res1.getTime() + 90 * oneMinute);
+        var result2 = new Date(result1.getTime() + 90 * oneMinute);
 
         // Get result3 for result2 + 1.5 hours
-        var result3 = new Date(res2.getTime() + 90 * oneMinute);
+        var result3 = new Date(result2.getTime() + 90 * oneMinute);
 
         // Get result4 for result3 + 1.5 hours
-        var result4 = new Date(res3.getTime() + 90 * oneMinute);
+        var result4 = new Date(result3.getTime() + 90 * oneMinute);
 
         // Get result5 for result4 + 1.5 hours
-        var result5 = new Date(res4.getTime() + 90 * oneMinute);
+        var result5 = new Date(result4.getTime() + 90 * oneMinute);
 
         // Get result6 for result5 + 1.5 hours
-        var result6 = new Date(res5.getTime() + 90 * oneMinute);
+        var result6 = new Date(result5.getTime() + 90 * oneMinute);
 
         // Display the results in respective result fields
         $('#resultNow2').html(strTime(result2));
