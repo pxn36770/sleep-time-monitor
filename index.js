@@ -84,6 +84,7 @@ $(document).ready(function () {
 
             // Create a formatted time String in HH:MM AMPM Format from input fields
             var timeStr = `${$('#hour').val()}:${$('#minute').val()} ${$('#ampm').val()}`;
+            //console.log(timeStr);
 
             // Get JS Date object from HH:MM AMPM time string
             var setTime = strTimeToDateObj(timeStr);
@@ -167,6 +168,7 @@ function strTimeToDateObj(timestr) {
     
     // Extract Date into MM/DD/YYYY string format.
     var strDate = new Date().toLocaleDateString();
+    comsole.log(strDate);
 
     // Append HH:MM AMPM Time to strDate and parse into new JS Date Object
     return new Date(`${strDate} ${timestr}`);
