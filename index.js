@@ -19,8 +19,10 @@ $(document).ready(function () {
         $.ajax('howcalculatorworks.html', {
             cache: false,
             success: function (data) {
+                // Add data received from AJAX to start container
                 $('#start').html(data);
 
+                // Reveal start container
                 $('#start').fadeIn();
             }
         })
@@ -35,8 +37,10 @@ $(document).ready(function () {
         $.ajax('benifitsofgoodsleep.html', {
             cache: false,
             success: function (data) {
+                // Add data received from AJAX to start container
                 $('#start').html(data);
 
+                // Reveal start container
                 $('#start').fadeIn();
             }
         })
@@ -51,8 +55,10 @@ $(document).ready(function () {
         $.ajax('about.html', {
             cache: false,
             success: function (data) {
+                // Add data received from AJAX to start container
                 $('#start').html(data);
 
+                // Reveal start container
                 $('#start').fadeIn();
             }
         })
@@ -78,7 +84,6 @@ $(document).ready(function () {
 
                     // Get JS Date object from HH:MM AMPM time string
                     var setTime = strTimeToDateObj(timeStr);
-
 
                     // Get result1 for time - 4.5 hours
                     var result1 = new Date(setTime.getTime() - 270 * oneMinute);
@@ -116,6 +121,7 @@ $(document).ready(function () {
         // Hide Start Page
         $('#start').hide();
 
+        // Create AJAX Request for resultNow html file
         $.ajax('resultNow.html', {
             cache: false,
             success: function (data) {
@@ -140,6 +146,7 @@ $(document).ready(function () {
                 // Get result6 for result5 + 1.5 hours
                 var result6 = new Date(result5.getTime() + 90 * oneMinute);
 
+                // Add data received from AJAX to start container
                 $('#start').html(data);
 
                 // Display the results in respective result fields
@@ -150,12 +157,13 @@ $(document).ready(function () {
                 $('#resultNow5').html(strTime(result5));
                 $('#resultNow6').html(strTime(result6));
 
-                // Show resultNow Page
+                // Show start container
                 $('#start').fadeIn();
             }
         })
     });
 });
+
 
 // Function to convert JS Date() Object to Time String in HH:MM AMPM
 function strTime(datetime) {
