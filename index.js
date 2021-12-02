@@ -1,121 +1,118 @@
 "use strict";
 
+// Document ready event
 $(document).ready(function () {
+
+    // Extract milliseconds from 1 minute value
+    const oneMinute = 60 * 1000;   // 60 seconds * 1000 milliseconds
+
+    // Back Button Click Event
     $('.back').click(function () {
+        // Reveal Start Page
         $('#start').fadeIn();
+
+        // Hide Result Page
         $('#results').hide();
+
+        // Hide Result Now Page (zzz)
         $('#resultsNow').hide();
+    }); // End .back click
 
-    });
-
+    // Calculate result button click Event
     $('#calculate').click(function () {
+
+        // Input Validation
         if ($('#hour').val() != 'hour' && $('#minute').val() != 'minute') {
+
+            // Hide the Start Page
             $('#start').hide();
-            var setTime = new Date();
 
-            if ($('#hour').val() == 12) {
-                $('#hour').val(0);
-            }
+            // Create a formatted time String in HH:MM AMPM Format from input fields
+            var timeStr = `${$('#hour').val()}:${$('#minute').val()} ${$('#ampm').val()}`;
 
-            if ($('#ampm').val() == "AM") {
-                setTime.setHours($('#hour').val());
-            } else if ($('#ampm').val() == "PM") {
-                setTime.setHours(+$('#hour').val() + 12);
-            }
+            // Get JS Date object from HH:MM AMPM time string
+            var setTime = strTimeToDateObj(timeStr);
 
-            setTime.setMinutes($('#minute').val());
 
-            var res1 = new Date(setTime.getTime() - 270 * 60000);
-            var res2 = new Date(res1.getTime() - 90 * 60000);
-            var res3 = new Date(res2.getTime() - 90 * 60000);
-            var res4 = new Date(res3.getTime() - 90 * 60000);
+            // Get result1 for time - 4.5 hours
+            var result1 = new Date(setTime.getTime() - 270 * oneMinute);
 
-            function retDate(dateObj) {
-                var formatted = '';
-                var pm = false;
-                if (dateObj.getHours() > 12) {
-                    formatted = dateObj.getHours() - 12;
-                    pm = true;
-                } else if (dateObj.getHours() < 12 && dateObj.getHours() != 0) {
-                    formatted = dateObj.getHours();
-                } else if (dateObj.getHours() == 0) {
-                    formatted = "12";
-                } else if (dateObj.getHours() == 12) {
-                    formatted = "12";
-                    pm = true;
-                }
-                if (dateObj.getMinutes() < 10) {
-                    formatted = formatted + ":0" + dateObj.getMinutes();
-                } else {
-                    formatted = formatted + ":" + dateObj.getMinutes();
-                }
-                if (pm == true) {
-                    formatted = formatted + " PM";
-                } else {
-                    formatted = formatted + " AM";
-                }
-                return formatted;
-            }
+            // Get result2 for result1 - 1.5 hours
+            var result2 = new Date(res1.getTime() - 90 * oneMinute);
 
-            $('#result4').html(String(retDate(res1)));
-            $('#result3').html(String(retDate(res2)));
-            $('#result2').html(String(retDate(res3)));
-            $('#result1').html(String(retDate(res4)));
+            // Get result3 for result2 - 1.5 hours
+            var result3 = new Date(res2.getTime() - 90 * oneMinute);
 
+            // Get result4 for result3 - 1.5 hours
+            var result4 = new Date(res3.getTime() - 90 * oneMinute);
+
+
+            // Display the results in respective result fields
+            $('#result4').html(strTime(result1));
+            $('#result3').html(strTime(result2));
+            $('#result2').html(strTime(result3));
+            $('#result1').html(strTime(result4));
+
+            // Show results page
             $('#results').fadeIn();
-            $('#feedback').fadeIn();
-        } // end hour/minute check if
+        }
         else {
-            alert("Please select an hour and a minute before trying to calculate!");
-        } // end not-filled check
+            // Show Error for incorrect input
+            alert("Kindly select hour and minute before trying to calculate!");
+        }
     }); // end calculate
 
     $('#zzz').click(function () {
+
+        // Hide Start Page
         $('#start').hide();
-        var zDate = new Date();
+        var sleepDate = new Date();
 
-        var res1 = new Date(zDate.getTime() + 104 * 60000);
-        var res2 = new Date(res1.getTime() + 90 * 60000);
-        var res3 = new Date(res2.getTime() + 90 * 60000);
-        var res4 = new Date(res3.getTime() + 90 * 60000);
-        var res5 = new Date(res4.getTime() + 90 * 60000);
-        var res6 = new Date(res5.getTime() + 90 * 60000);
 
-        function retDate(dateObj) {
-            var formatted = '';
-            var pm = false;
-            if (dateObj.getHours() > 12) {
-                formatted = dateObj.getHours() - 12;
-                pm = true;
-            } else if (dateObj.getHours() < 12 && dateObj.getHours() != 0) {
-                formatted = dateObj.getHours();
-            } else if (dateObj.getHours() == 0) {
-                formatted = "12";
-            } else if (dateObj.getHours() == 12) {
-                formatted = "12";
-                pm = true;
-            }
-            if (dateObj.getMinutes() < 10) {
-                formatted = formatted + ":0" + dateObj.getMinutes();
-            } else {
-                formatted = formatted + ":" + dateObj.getMinutes();
-            }
-            if (pm == true) {
-                formatted = formatted + " PM";
-            } else {
-                formatted = formatted + " AM";
-            }
-            return formatted;
-        }
+        // Get result1 for time + 1.5 hours + 14 minutes to fall asleep
+        var result1 = new Date(sleepDate.getTime() + (90 * oneMinute) + 14);
 
-        $('#resultNow1').html(String(retDate(res1)));
-        $('#resultNow2').html(String(retDate(res2)));
-        $('#resultNow3').html(String(retDate(res3)));
-        $('#resultNow4').html(String(retDate(res4)));
-        $('#resultNow5').html(String(retDate(res5)));
-        $('#resultNow6').html(String(retDate(res6)));
+        // Get result2 for result1 + 1.5 hours
+        var result2 = new Date(res1.getTime() + 90 * oneMinute);
 
+        // Get result3 for result2 + 1.5 hours
+        var result3 = new Date(res2.getTime() + 90 * oneMinute);
+
+        // Get result4 for result3 + 1.5 hours
+        var result4 = new Date(res3.getTime() + 90 * oneMinute);
+
+        // Get result5 for result4 + 1.5 hours
+        var result5 = new Date(res4.getTime() + 90 * oneMinute);
+
+        // Get result6 for result5 + 1.5 hours
+        var result6 = new Date(res5.getTime() + 90 * oneMinute);
+
+        // Display the results in respective result fields
+        $('#resultNow2').html(strTime(result2));
+        $('#resultNow1').html(strTime(result1));
+        $('#resultNow3').html(strTime(result3));
+        $('#resultNow4').html(strTime(result4));
+        $('#resultNow5').html(strTime(result5));
+        $('#resultNow6').html(strTime(result6));
+
+        // Show resultNow Page
         $('#resultsNow').fadeIn();
-        $('#feedback').fadeIn();
     });
 });
+
+// Function to convert JS Date() Object to Time String in HH:MM AMPM
+function strTime(datetime) {
+
+    return datetime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+} // End strTime
+
+
+// Function to convert HH:MM AMPM to JS Date object
+function strTimeToDateObj(timestr) {
+    
+    // Extract Date into MM/DD/YYYY string format.
+    var strDate = new Date().toLocaleDateString();
+
+    // Append HH:MM AMPM Time to strDate and parse into new JS Date Object
+    return new Date(`${strDate} ${timestr}`);
+}
